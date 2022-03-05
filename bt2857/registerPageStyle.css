@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, #00c9ff, #92fe9d);
+}
+
+.box__register--header {
+  font-weight: bold;
+  text-align: center;
+  font-size: 35px;
+  border-bottom: 2px solid #999;
+  margin-bottom: 20px;
+}
+
+.box__register--body {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #999;
+}
+
+.box__register {
+  width: 400px;
+  height: fit-content;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 150px auto;
+}
+
+.btn {
+  width: 100%;
+}
