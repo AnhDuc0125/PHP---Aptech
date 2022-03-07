@@ -1,8 +1,3 @@
-<?php
-  $actionList = array('add', 'edit', 'remove');
-  $studentList = array('Vũ Đức Anh', 'Mai Hiểu Minh', 'Vũ Diễm Quỳnh', 'Hà Quang Bách');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Action List</title>
+    <title>BT1635</title>
     <!--bootstrap 5 and Jquery cdn -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -23,39 +18,44 @@
 </head>
 
 <body>
-    <button class="btn btn-success m-5" onclick="genRand()">Random Action</button>
     <?php
-      echo "<p>Action: </p>"
-    ?>
+      $bookList = [];
+      $num = rand(2, 10);
+      for ($i=1; $i<=$num; $i++){
+          $bookList[] = array(
+            'name' => "book $i",
+            'author' => "author $i",
+            'price' => "price $i"
+          );
+      }
+      ?>
 
     <div class="card m-5">
-        <div class="card-header bg-primary text-light">Student List</div>
+        <div class="card-header bg-primary text-light">Book List</div>
         <div class="card-body">
             <table class="table table-bordered">
                 <tr>
-                    <th style="width: 50px">No</th>
-                    <th>Student</th>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Price</th>
                 </tr>
                 <?php
-                $index = 0;
-                foreach($studentList as $student){
-                      echo "<tr>
-                                <td>".++$index."</td>
-                                <td>$student</td>
-                            </tr>";
-                  }
-                ?>
+                      if(!empty($bookList)){
+                          $index = 0;
+                          foreach($bookList as $book){
+                              echo "<tr>
+                                        <td>".(++$index)."</td>
+                                        <td>".$book['name']."</td>
+                                        <td>".$book['author']."</td>
+                                        <td>".$book['price']."</td>
+                                    </tr>";
+                          }
+                      }
+                    ?>
             </table>
         </div>
     </div>
-    <script>
-    $('.button').click(function() {
-        $.post("ajax_api.php", {
-            'index': index,
-            'action':
-        })
-    });
-    </script>
 </body>
 
 </html>
