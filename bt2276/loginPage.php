@@ -1,33 +1,34 @@
 <?php
-require_once("config.php");
-require_once("library.php");
-$email = $password = "";
+    include_once("config.php");
+    include_once("library.php");
   if(!empty($_POST)){
       $email = getPost('email');
       $password = getPost('password');
-      $password = getMD5pw($password);
+      $password = getMD5code($password);
 
-      $connect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-      mysqli_set_charset($connect, 'utf8');
+      $con = mysqli_connect(HOST, ROOT, PASSWORD, DATABASE);
+      mysqli_set_charset($con, "utf8");
       
-      $queryAhihi = "select * from Users where email = '$email' and password = '$password'";
-      $resultSet = mysqli_query($connect, $queryAhihi);
-
-      $data = [];
-      while(($row = mysqli_fetch_array($resultSet, 1)) != null){
-          $data[] = $row;
-      };
-      mysqli_close($connect);
-      
-      if(count($data) == 1){
-          //success login
-          header("Location: welcome.php");
-          die();
-      } else {
-          echo "Đăng nhập thất bại!";
-      }
+      if(mysqli_connect_errno()) {
+        echo "Fail to connect to MySQL".mysqli_connect_error();
+        die();
     }
 
+      $query = "select * from Users where password = '$password' and email = '$email'";
+
+      $resultSet = mysqli_query($con, $query);
+      $data = [];
+      while($rows = mysqli_fetch_array($resultSet, 1) != NULL){
+        $data[] = $rows; 
+      }
+
+      mysqli_close($con);
+      if(count($data) == 1){
+          header("Location: welcomePage.php");
+      } else {
+        echo "<h1><center>Login Failed!</center></h1>";
+      }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +47,14 @@ $email = $password = "";
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="login.css">
 
 </head>
 
 <body>
-    <div class="card m-5">
-        <div class="card-header bg-primary text-light">Login Form</div>
-        <div class="card-body">
+    <div class="box">
+        <div class="box--header">Login</div>
+        <div class="box--body">
             <form method="POST">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="floatingInput"

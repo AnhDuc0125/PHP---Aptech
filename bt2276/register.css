@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, #11998e, #38ef7d);
+}
+
+.box {
+  width: 400px;
+  padding: 20px;
+  margin: 150px auto;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.box--header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 35px;
+  border-bottom: 2px solid #999;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100%;
+}

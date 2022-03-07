@@ -1,17 +1,16 @@
 <?php
-  require_once("config.php");
-  require_once("library.php");
-
+require_once("library.php");
+require_once("config.php");
   $username = $email = $password = "";
   if(!empty($_POST)){
     $username = getPost('username');
     $email = getPost('email');
     $password = getPost('password');
-    $password = getMD5pw($password);
-             
-    $query = "insert into Users (username, email, password) values ('$username', '$email', '$password')";
-
-    execute($query);
+    $password = getMD5code($password);
+    $query = "insert into Users (name, email, password) values ('$username', '$email', '$password')"; 
+    executes($query);
+    header("Location: loginPage.php");
+    die();
   }
 ?>
 
@@ -31,35 +30,31 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="register.css">
 </head>
 
 <body>
-    <div class="card m-5">
-        <div class="card-header bg-primary text-light">Register Form</div>
-        <div class="card-body">
+    <div class="box">
+        <div class="box--header">Register</div>
+        <div class="box--body">
             <form method="POST">
                 <div class="form-floating mb-3">
-                    <input required type="text" class="form-control" name="username" id="floatingInput"
+                    <input type="text" class="form-control" name="username" id="floatingInput"
                         placeholder="name@example.com">
                     <label for="floatingInput">Username</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input required type="email" class="form-control" name="email" id="floatingInput"
+                    <input type="email" class="form-control" name="email" id="floatingInput"
                         placeholder="name@example.com">
                     <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input required type="password" class="form-control" name="password" id="floatingPassword"
+                    <input type="password" class="form-control" name="password" id="floatingPassword"
                         placeholder="name@example.com">
                     <label for="floatingPassword">Password</label>
                 </div>
                 <button type="submit" class="btn btn-success">Register</button>
             </form>
-            <br>
-            Đã có tài khoản?
-            <br>
-            <a href="login.php"><button type="button" class="btn btn-primary">Login</button></a>
         </div>
     </div>
 </body>

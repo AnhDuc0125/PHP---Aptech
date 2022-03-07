@@ -4,7 +4,8 @@
       header("Location: loginPage.php");
       die();
     } else {
-        $currentAcc = $_SESSION['currentAcc'];  
+        $_SESSION['accountList'] = $currentAcc = $_SESSION['currentAcc'];  
+        var_dump($_SESSION['accountList']);
     }
 ?>
 

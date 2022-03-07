@@ -1,29 +1,32 @@
 <?php
-//function fix SQL injection
   function getPost($key, $slash = '\''){
-    $value = "";
-    if(isset($_POST[$key])){
+    if(isset($_POST[$key])){   
         $value = $_POST[$key];
         $value = str_replace($slash, "\\".$slash, $value);
     }
     return $value;
   }
 
-//security password
-function getMD5pw($password){
-    $encrypt = md5($password);
-    $encrypt = md5('ashfujisghjgnv'.$password.'kldsfjlsdkfdsf');
+  function getMD5code($value) {
+    $value = md5("ducnhaskljdfkfj".$value."ducnhaskljdfkfj");
+    return $value;
+  }
 
-    return $encrypt;
-}
+  function executes($query){
+     //Step 1: connect to DB:
+     $con = mysqli_connect(HOST, ROOT, PASSWORD, DATABASE);
 
-//open SQL, run query and close SQL
-function execute($query){
-    $connect = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-      mysqli_set_charset($connect, 'utf8');
-
-      mysqli_query($connect, $query);
-    
-      mysqli_close($connect);
-}
+     if(mysqli_connect_errno()) {
+         echo "Fail to connect to MySQL".mysqli_connect_error();
+         die();
+     }
+     //Step 2: Set charset:
+     mysqli_set_charset($con, 'utf8');
+     
+     //Step 3: Write queries:
+     mysqli_query($con, $query);
+ 
+     //Step 4: Close DB:
+     mysqli_close($con);
+  }
 ?>

@@ -1,6 +1,6 @@
 <?php
-    const HOST = "localhost";
-    const DATABASE = "LOGIN_FORM";
-    const USERNAME = "anhduc0125";
-    const PASSWORD = "h0/I1y3!Hto5HSQi";
+  define("HOST", "localhost");
+  define("ROOT", "anhduc0125");
+  define("PASSWORD", "PVGphznRP[JNt_OH");
+  define("DATABASE", "BT2276");
 ?>
