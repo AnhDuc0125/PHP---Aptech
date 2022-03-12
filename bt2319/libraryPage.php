@@ -5,6 +5,14 @@
 
   $query = "select * from books";
   $bookList = executeResult($query);
+
+  if(!empty($_POST)){
+      if(isset($_POST['bookName'])){
+          $bookName = $_POST['bookName'];
+      }
+      $query = "select * from books where title like '%$bookName%';";
+      $bookList = executeResult($query);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +38,21 @@
     <h1>
         <center>Library Management</center>
     </h1>
+
+    <div class="card m-5">
+        <div class="card-header bg-primary text-light">Find books</div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="bookName" id="floatingInput"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Search books by name</label>
+                </div>
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>
+        </div>
+    </div>
+
     <div class="card m-5">
         <div class="card-header bg-primary text-light">Books List</div>
         <div class="card-body">
